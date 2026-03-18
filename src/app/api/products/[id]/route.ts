@@ -1,4 +1,5 @@
 // src/app/api/products/[id]/route.ts
+
 import { NextRequest } from 'next/server'
 import { db } from '@/lib/db'
 import { requireAdmin, AuthError } from '@/lib/auth'
@@ -16,9 +17,15 @@ export async function GET(_: NextRequest, { params }: Params) {
     },
     include: {
       category: true,
-      images:   { orderBy: { position: 'asc' } },
-      variants: true,
-      tags:     true,
+      images: { orderBy: { position: 'asc' } },
+
+      // ❌ variants kaldırıldı
+      // variants: true,
+
+      // ✅ DOĞRU
+      bundles: true,
+
+      tags: true,
       reviews: {
         include: { user: { select: { name: true } } },
         orderBy: { createdAt: 'desc' },
@@ -60,7 +67,6 @@ export async function PATCH(request: NextRequest, { params }: Params) {
 
   const { images, tags, ...rest } = data
 
-  // Build update payload — only include fields that were provided
   const updateData: Prisma.ProductUpdateInput = { ...rest }
 
   if (data.name && !data.slug) {
@@ -68,7 +74,6 @@ export async function PATCH(request: NextRequest, { params }: Params) {
   }
 
   if (images) {
-    // Replace all images atomically
     updateData.images = {
       deleteMany: {},
       create: images,
@@ -84,11 +89,12 @@ export async function PATCH(request: NextRequest, { params }: Params) {
 
   const product = await db.product.update({
     where: { id: params.id },
-    data:  updateData,
+    data: updateData,
     include: {
       category: true,
-      images:   { orderBy: { position: 'asc' } },
-      tags:     true,
+      images: { orderBy: { position: 'asc' } },
+      bundles: true, // ✅ burada da ekledim (tutarlılık için)
+      tags: true,
     },
   })
 
@@ -107,12 +113,12 @@ export async function DELETE(_: NextRequest, { params }: Params) {
     where: { id: params.id },
     select: { id: true },
   })
+
   if (!existing) return errorResponse('Product not found', 404)
 
-  // Soft delete — preserves order history
   await db.product.update({
     where: { id: params.id },
-    data:  { isActive: false },
+    data: { isActive: false },
   })
 
   return successResponse({ message: 'Product deactivated successfully' })
