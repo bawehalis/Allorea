@@ -1,5 +1,4 @@
 // prisma/schema.prisma — Allorea Cosmetics v2
-// Bundle + paket varyant sistemi eklendi
 
 generator client {
   provider = "prisma-client-js"
@@ -9,8 +8,6 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
-// ─── Kullanıcı & Oturum ───────────────────────────────────────────────────────
 
 model User {
   id           String         @id @default(cuid())
@@ -52,8 +49,6 @@ model Address {
   orders     Order[]
 }
 
-// ─── Ürün ─────────────────────────────────────────────────────────────────────
-
 model Category {
   id          String     @id @default(cuid())
   name        String
@@ -72,12 +67,10 @@ model Product {
   name         String
   slug         String         @unique
   description  String
-  // Satış sayfası için özel alanlar
-  problemText  String?        // "Saç dökülmesi problemi..." bölümü
-  solutionText String?        // "Nasıl çözüm sunar" bölümü
-  howToUse     String?        // Kullanım talimatı
+  problemText  String?
+  solutionText String?
+  howToUse     String?
   ingredients  String?
-  // Temel fiyat (tek ürün / baz fiyat)
   price        Float
   comparePrice Float?
   costPrice    Float?
@@ -88,15 +81,11 @@ model Product {
   isFeatured   Boolean        @default(false)
   isBestSeller Boolean        @default(false)
   isNew        Boolean        @default(false)
-  // Bundle mi?
   isBundle     Boolean        @default(false)
   categoryId   String
   category     Category       @relation(fields: [categoryId], references: [id])
-  // İlişkiler
   images       ProductImage[]
-  // Paket varyantları (1 adet / 3 adet / 5 adet)
   bundles      ProductBundle[]
-  // Bundle içinde yer aldığı ürünler (ters taraf)
   bundleOf     ProductBundle[] @relation("BundleProduct")
   reviews      Review[]
   orderItems   OrderItem[]
@@ -112,19 +101,17 @@ model Product {
   @@index([isActive, isBestSeller])
 }
 
-// Paket/Bundle seçenekleri — "1 Adet", "3 Adet %20 indirim", "5 Adet %40 indirim"
 model ProductBundle {
   id              String   @id @default(cuid())
-  productId       String   // Ana ürün
-  label           String   // "1 Adet", "3 Adet", "5 Adet"
-  quantity        Int      // Kaç adet
-  price           Float    // Bu paket için toplam fiyat
-  comparePrice    Float?   // Eski/karşılaştırma fiyatı
-  discountPercent Int      @default(0) // %20, %40 vb.
+  productId       String
+  label           String
+  quantity        Int
+  price           Float
+  comparePrice    Float?
+  discountPercent Int      @default(0)
   isMostPopular   Boolean  @default(false)
   position        Int      @default(0)
   product         Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  // Bu bundle'ın birden fazla farklı ürün içermesi durumu (hediye seti vb.)
   bundleProductId String?
   bundleProduct   Product? @relation("BundleProduct", fields: [bundleProductId], references: [id])
 
@@ -149,7 +136,6 @@ model ProductTag {
   @@index([tag])
 }
 
-// Ürün SSS bölümü — her ürün sayfasına özel
 model ProductFaq {
   id        String  @id @default(cuid())
   productId String
@@ -159,7 +145,6 @@ model ProductFaq {
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
-// Yorum (Before/After görseli de dahil)
 model Review {
   id           String   @id @default(cuid())
   productId    String
@@ -167,7 +152,7 @@ model Review {
   rating       Int
   title        String?
   body         String
-  beforeImage  String?  // Before/After için
+  beforeImage  String?
   afterImage   String?
   isVerified   Boolean  @default(false)
   isFeatured   Boolean  @default(false)
@@ -179,8 +164,6 @@ model Review {
   @@index([productId])
 }
 
-// ─── Sipariş ──────────────────────────────────────────────────────────────────
-
 model Order {
   id              String        @id @default(cuid())
   orderNumber     String        @unique
@@ -189,7 +172,7 @@ model Order {
   phone           String?
   status          OrderStatus   @default(PENDING)
   paymentStatus   PaymentStatus @default(UNPAID)
-  paymentMethod   String?       // "stripe" | "cod" | "whatsapp"
+  paymentMethod   String?
   stripePaymentId String?
   subtotal        Float
   shipping        Float         @default(0)
@@ -216,7 +199,7 @@ model OrderItem {
   orderId     String
   productId   String
   name        String
-  bundleLabel String?  // "3 Adet Paket" vb.
+  bundleLabel String?
   price       Float
   quantity    Int
   image       String?
@@ -275,9 +258,33 @@ model NewsletterSubscriber {
   createdAt DateTime @default(now())
 }
 
-// ─── Enum ─────────────────────────────────────────────────────────────────────
+// ✅ ENUMS DÜZELTİLDİ
 
-enum Role          { CUSTOMER  ADMIN  SUPER_ADMIN }
-enum OrderStatus   { PENDING CONFIRMED PROCESSING SHIPPED DELIVERED CANCELLED REFUNDED }
-enum PaymentStatus { UNPAID PAID PARTIALLY_REFUNDED REFUNDED FAILED }
-enum CouponType    { PERCENTAGE FIXED }
+enum Role {
+  CUSTOMER
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+  PARTIALLY_REFUNDED
+  REFUNDED
+  FAILED
+}
+
+enum CouponType {
+  PERCENTAGE
+  FIXED
+}
