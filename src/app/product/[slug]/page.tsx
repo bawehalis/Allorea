@@ -252,7 +252,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 )}
                 {activeTab === 'howto' && (
                   <div className="space-y-3">
-                    {product.howToUse.map((step, i) => (
+                    (product.howToUse ?? []).map((step, i) => (
                       <div key={i} className="flex items-start gap-4">
                         <div className="w-6 h-6 bg-allorea-100 text-allorea-700 rounded-full flex items-center justify-center text-2xs font-body font-semibold shrink-0 mt-0.5">
                           {i+1}
