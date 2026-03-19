@@ -26,6 +26,7 @@ export interface SalesProduct {
   comparePrice: number
   images: ProductImage[]
   bundles: ProductBundle[]
+  reviews: { rating: number }[]   // ✅ EKLENDİ
   stock: number
   isBestSeller: boolean
   isNew: boolean
@@ -66,6 +67,11 @@ export const SAC_SERUMU: SalesProduct = {
       isMostPopular: true,
     },
   ],
+  reviews: [   // ✅ EKLENDİ
+    { rating: 5 },
+    { rating: 5 },
+    { rating: 4 },
+  ],
   stock: 50,
   isBestSeller: true,
   isNew: false,
@@ -82,7 +88,7 @@ export function getProductBySlug(slug: string) {
   return ALL_PRODUCTS.find((p) => p.slug === slug)
 }
 
-// ─── BLOG FIX (TÜM ALANLAR EKLENDİ) ─────────────────────────
+// ─── BLOG FIX ─────────────────────────
 
 export interface BlogPost {
   id: string
