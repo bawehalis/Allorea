@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { CATEGORIES } from '@/lib/mock-data'
+import CATEGORIES from '@/lib/mock-data'
 
 export default function CategoryGrid() {
   return (
