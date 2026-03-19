@@ -1,112 +1,107 @@
-// src/lib/mock-data.ts — Allorea Cosmetics v2
+// src/lib/mock-data.ts — FINAL FIX
+
+// ─── TYPES ─────────────────────────
 
 export interface ProductBundle {
   id: string
   label: string
   quantity: number
   price: number
-  comparePrice?: number
   discountPercent: number
   isMostPopular: boolean
-  savings?: number
 }
 
 export interface ProductImage {
   id: string
   url: string
-  alt?: string
   position: number
-}
-
-export interface ProductFaq {
-  question: string
-  answer: string
-}
-
-export interface Review {
-  id: string
-  name: string
-  rating: number
-  title: string
-  body: string
-  date: string
-  isVerified: boolean
-  avatar?: string
-  beforeImage?: string
-  afterImage?: string
 }
 
 export interface SalesProduct {
   id: string
   name: string
   slug: string
-  tagline: string
   description: string
-  problemText: string
-  solutionText: string
-  howToUse: string[]
-  ingredients: string
   price: number
   comparePrice: number
   images: ProductImage[]
   bundles: ProductBundle[]
-  reviews: Review[]
-  faqs: ProductFaq[]
   stock: number
   isBestSeller: boolean
   isNew: boolean
-  badge?: string
   categorySlug: string
 }
 
-// ─── ANA ÜRÜN ─────────────────────────────────────────
+// ─── PRODUCT ─────────────────────────
 
-const SAC_SERUMU: SalesProduct = {
+export const SAC_SERUMU: SalesProduct = {
   id: 'sac-serumu-001',
   name: 'Allorea Saç Yoğunlaştırıcı Serum',
   slug: 'allorea-sac-yogunlastirici-serum',
-  tagline: '30 Günde Görünür Fark — Ya Paranızı Geri Alın',
   description: 'Saç dökülmesini azaltmaya yardımcı premium serum.',
-  problemText: 'Saç dökülmesi özgüveni etkiler.',
-  solutionText: 'Kökten çözüm sunar.',
-  howToUse: ['Uygula', 'Masaj yap', 'Durulama yok'],
-  ingredients: 'Biotin, Kafein',
   price: 349,
   comparePrice: 499,
   images: [
-    { id: 'i1', url: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be', position: 0 },
+    {
+      id: 'i1',
+      url: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be',
+      position: 0,
+    },
   ],
   bundles: [
-    { id: 'b1', label: '1 Adet', quantity: 1, price: 349, discountPercent: 0, isMostPopular: false },
-    { id: 'b2', label: '3 Adet', quantity: 3, price: 799, discountPercent: 47, isMostPopular: true },
+    {
+      id: 'b1',
+      label: '1 Adet',
+      quantity: 1,
+      price: 349,
+      discountPercent: 0,
+      isMostPopular: false,
+    },
+    {
+      id: 'b2',
+      label: '3 Adet',
+      quantity: 3,
+      price: 799,
+      discountPercent: 47,
+      isMostPopular: true,
+    },
   ],
-  reviews: [],
-  faqs: [],
   stock: 50,
   isBestSeller: true,
   isNew: false,
   categorySlug: 'hair-care',
 }
 
-// ─── EXPORTS ─────────────────────────────────────────
+// ─── PRODUCTS ─────────────────────────
 
-export const ALL_PRODUCTS: SalesProduct[] = [SAC_SERUMU]
+export const ALL_PRODUCTS = [SAC_SERUMU]
 export const FEATURED_PRODUCTS = ALL_PRODUCTS
 export const PRODUCTS = ALL_PRODUCTS
 
-// ─── BLOG ─────────────────────────────────────────────
-
-export const BLOG_POSTS = []
-
-// ─── CATEGORY NAMES ─────────────────────────────────
-
-export const CATEGORY_NAMES: Record<string, string> = {
-  'hair-care': 'Saç Bakımı',
-  'skincare': 'Cilt Bakımı',
-  'serums': 'Serumlar',
+// 🔥 BU ÇOK ÖNEMLİ (hata fix)
+export function getProductBySlug(slug: string) {
+  return ALL_PRODUCTS.find((p) => p.slug === slug)
 }
 
-// ─── 🔥 CATEGORY FIX (FINAL) ─────────────────────────
+// ─── BLOG FIX ─────────────────────────
+
+export interface BlogPost {
+  id: string
+  slug: string
+  title: string
+  content: string
+}
+
+export const BLOG_POSTS: BlogPost[] = [
+  {
+    id: '1',
+    slug: 'ornek-blog',
+    title: 'Örnek Blog',
+    content: 'İçerik',
+  },
+]
+
+// ─── CATEGORY ─────────────────────────
 
 export interface CategoryItem {
   id: string
@@ -136,6 +131,6 @@ const CATEGORY_LIST: CategoryItem[] = [
   },
 ]
 
-// 🔥 both export (garanti çözüm)
+// 🔥 çift export (garanti)
 export const CATEGORIES = CATEGORY_LIST
 export default CATEGORY_LIST
