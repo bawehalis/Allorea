@@ -92,6 +92,8 @@ export interface BlogPost {
   content: string
   image?: string
   tags?: string[]
+  authorName?: string
+  publishedAt?: string
 }
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -102,6 +104,8 @@ export const BLOG_POSTS: BlogPost[] = [
     content: 'İçerik',
     image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908',
     tags: ['Saç Bakımı', 'Serum'],
+    authorName: 'Allorea Team',
+    publishedAt: '2025-01-01',
   },
 ]
 
