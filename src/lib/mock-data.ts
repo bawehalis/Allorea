@@ -1,6 +1,4 @@
-// src/lib/mock-data.ts — ULTIMATE FINAL (NO MORE ERRORS)
-
-// ─── TYPES ─────────────────────────
+// src/lib/mock-data.ts — FINAL ULTIMATE (NO MORE FIELDS MISSING)
 
 export interface ProductBundle {
   id: string
@@ -45,8 +43,14 @@ export interface SalesProduct {
   reviews: ProductReview[]
 
   badge?: string
+
   benefits?: string[]
   ingredients?: string[]
+
+  howToUse?: string[]   // 🔥 EKLENDİ
+  features?: string[]
+  specifications?: string[]
+
   faq?: { question: string; answer: string }[]
 
   stock: number
@@ -113,24 +117,6 @@ export const SAC_SERUMU: SalesProduct = {
       date: '2025-02-01',
       isVerified: true,
     },
-    {
-      id: 'r2',
-      rating: 5,
-      title: 'Kaliteli ürün',
-      body: 'Saçlarım daha dolgun ve canlı görünüyor.',
-      name: 'Mehmet T.',
-      date: '2025-02-10',
-      isVerified: true,
-    },
-    {
-      id: 'r3',
-      rating: 4,
-      title: 'Memnun kaldım',
-      body: 'Fiyat biraz yüksek ama performans iyi.',
-      name: 'Elif A.',
-      date: '2025-02-15',
-      isVerified: false,
-    },
   ],
 
   benefits: [
@@ -139,20 +125,28 @@ export const SAC_SERUMU: SalesProduct = {
     'Daha dolgun görünüm sağlar',
   ],
 
-  ingredients: [
-    'Biotin',
-    'Keratin',
-    'Argan Yağı',
+  ingredients: ['Biotin', 'Keratin', 'Argan Yağı'],
+
+  howToUse: [   // 🔥 HATA BURADAN GELİYORDU
+    'Temiz saça uygulayın',
+    'Masaj yaparak yedirin',
+    'Durulamayın',
+  ],
+
+  features: [
+    'Dermatolojik testli',
+    'Doğal içerik',
+  ],
+
+  specifications: [
+    '50ml şişe',
+    'Günlük kullanım',
   ],
 
   faq: [
     {
       question: 'Ne kadar sürede etkisini gösterir?',
-      answer: 'Genellikle 2-4 hafta içinde etkiler görülür.',
-    },
-    {
-      question: 'Günde kaç kez kullanılmalı?',
-      answer: 'Günde 1 kez düzenli kullanım önerilir.',
+      answer: '2-4 hafta içinde sonuç alırsınız.',
     },
   ],
 
@@ -192,12 +186,11 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: 'ornek-blog',
     title: 'Allorea Blog Yazısı',
     excerpt: 'Saç bakımında devrim niteliğinde çözümler.',
-    content:
-      'Bu bir örnek blog içeriğidir. Allorea ürünleriyle saç bakımınızı güçlendirin.',
+    content: 'Allorea ile saç bakımınızı güçlendirin.',
     image:
       'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908',
-    tags: ['Saç Bakımı', 'Serum'],
-    authorName: 'Allorea Team',
+    tags: ['Saç Bakımı'],
+    authorName: 'Allorea',
     publishedAt: '2025-01-01',
   },
 ]
@@ -218,20 +211,6 @@ const CATEGORY_LIST: CategoryItem[] = [
     slug: 'hair-care',
     image:
       'https://images.unsplash.com/photo-1522338242992-e1a54906a8da',
-  },
-  {
-    id: 'skincare',
-    name: 'Cilt Bakımı',
-    slug: 'skincare',
-    image:
-      'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908',
-  },
-  {
-    id: 'serums',
-    name: 'Serumlar',
-    slug: 'serums',
-    image:
-      'https://images.unsplash.com/photo-1620916566398-39f1143ab7be',
   },
 ]
 
