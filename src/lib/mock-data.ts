@@ -90,6 +90,7 @@ export interface BlogPost {
   slug: string
   title: string
   content: string
+  image?: string
 }
 
 export const BLOG_POSTS: BlogPost[] = [
