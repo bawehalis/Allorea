@@ -1,4 +1,4 @@
-// src/lib/mock-data.ts — FINAL ABSOLUTE FIX
+// src/lib/mock-data.ts — FINAL ABSOLUTE FULL FIX
 
 // ─── TYPES ─────────────────────────
 
@@ -8,6 +8,7 @@ export interface ProductBundle {
   quantity: number
   price: number
   comparePrice?: number
+  savings?: number
   discountPercent: number
   isMostPopular: boolean
 }
@@ -18,7 +19,6 @@ export interface ProductImage {
   position: number
 }
 
-// 🔥 FULL REVIEW MODEL (HER ŞEY EKLİ)
 export interface ProductReview {
   id: string
   rating: number
@@ -70,6 +70,7 @@ export const SAC_SERUMU: SalesProduct = {
       quantity: 1,
       price: 349,
       comparePrice: 499,
+      savings: 150,
       discountPercent: 0,
       isMostPopular: false,
     },
@@ -79,12 +80,12 @@ export const SAC_SERUMU: SalesProduct = {
       quantity: 3,
       price: 799,
       comparePrice: 1497,
+      savings: 698,
       discountPercent: 47,
       isMostPopular: true,
     },
   ],
 
-  // 🔥 TAM UYUMLU REVIEWS
   reviews: [
     {
       id: 'r1',
