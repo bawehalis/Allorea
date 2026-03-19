@@ -1,4 +1,4 @@
-// src/lib/mock-data.ts — FINAL FIX (ALL ERRORS FULLY RESOLVED)
+// src/lib/mock-data.ts — FINAL ABSOLUTE FIX
 
 // ─── TYPES ─────────────────────────
 
@@ -7,7 +7,7 @@ export interface ProductBundle {
   label: string
   quantity: number
   price: number
-  comparePrice?: number 
+  comparePrice?: number
   discountPercent: number
   isMostPopular: boolean
 }
@@ -18,12 +18,15 @@ export interface ProductImage {
   position: number
 }
 
-// 🔥 FULL REVIEW TYPE
+// 🔥 FULL REVIEW MODEL (HER ŞEY EKLİ)
 export interface ProductReview {
   id: string
   rating: number
   title: string
   body: string
+  name: string
+  date: string
+  isVerified: boolean
 }
 
 export interface SalesProduct {
@@ -35,7 +38,7 @@ export interface SalesProduct {
   comparePrice: number
   images: ProductImage[]
   bundles: ProductBundle[]
-  reviews: ProductReview[]   // 🔥 FIX
+  reviews: ProductReview[]
   stock: number
   isBestSeller: boolean
   isNew: boolean
@@ -81,25 +84,34 @@ export const SAC_SERUMU: SalesProduct = {
     },
   ],
 
-  // 🔥 FULL FIXED REVIEWS
+  // 🔥 TAM UYUMLU REVIEWS
   reviews: [
     {
       id: 'r1',
       rating: 5,
       title: 'Gerçekten işe yarıyor',
       body: '2 haftada saç dökülmem ciddi şekilde azaldı.',
+      name: 'Ayşe K.',
+      date: '2025-02-01',
+      isVerified: true,
     },
     {
       id: 'r2',
       rating: 5,
       title: 'Kaliteli ürün',
       body: 'Saçlarım daha dolgun ve canlı görünüyor.',
+      name: 'Mehmet T.',
+      date: '2025-02-10',
+      isVerified: true,
     },
     {
       id: 'r3',
       rating: 4,
       title: 'Memnun kaldım',
       body: 'Fiyat biraz yüksek ama performans iyi.',
+      name: 'Elif A.',
+      date: '2025-02-15',
+      isVerified: false,
     },
   ],
 
