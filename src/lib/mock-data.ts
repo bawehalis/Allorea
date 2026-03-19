@@ -100,6 +100,8 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: 'ornek-blog',
     title: 'Örnek Blog',
     content: 'İçerik',
+    image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908',
+    tags: ['Saç Bakımı', 'Serum'],
   },
 ]
 
