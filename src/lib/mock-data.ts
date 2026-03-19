@@ -7,6 +7,7 @@ export interface ProductBundle {
   label: string
   quantity: number
   price: number
+  comparePrice?: number 
   discountPercent: number
   isMostPopular: boolean
 }
@@ -49,24 +50,26 @@ export const SAC_SERUMU: SalesProduct = {
       position: 0,
     },
   ],
-  bundles: [
-    {
-      id: 'b1',
-      label: '1 Adet',
-      quantity: 1,
-      price: 349,
-      discountPercent: 0,
-      isMostPopular: false,
-    },
-    {
-      id: 'b2',
-      label: '3 Adet',
-      quantity: 3,
-      price: 799,
-      discountPercent: 47,
-      isMostPopular: true,
-    },
-  ],
+ bundles: [
+  {
+    id: 'b1',
+    label: '1 Adet',
+    quantity: 1,
+    price: 349,
+    comparePrice: 499,   // ✅ EKLE
+    discountPercent: 0,
+    isMostPopular: false,
+  },
+  {
+    id: 'b2',
+    label: '3 Adet',
+    quantity: 3,
+    price: 799,
+    comparePrice: 1497,  // ✅ EKLE
+    discountPercent: 47,
+    isMostPopular: true,
+  },
+],
   reviews: [   // ✅ EKLENDİ
     { rating: 5 },
     { rating: 5 },
