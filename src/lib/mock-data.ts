@@ -91,6 +91,7 @@ export interface BlogPost {
   title: string
   content: string
   image?: string
+  tags?: string[]
 }
 
 export const BLOG_POSTS: BlogPost[] = [
