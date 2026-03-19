@@ -91,7 +91,7 @@ export interface BlogPost {
   excerpt: string
   content: string
   image?: string
-  tags?: string[]
+  tags: string[]
   authorName?: string
   publishedAt?: string
 }
