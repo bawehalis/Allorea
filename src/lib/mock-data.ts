@@ -27,7 +27,7 @@ export interface SalesProduct {
   comparePrice: number
   images: ProductImage[]
   bundles: ProductBundle[]
-  reviews: { rating: number }[]   // ✅ EKLENDİ
+  reviews: { id: string; rating: number }[]   // 🔥 FIX
   stock: number
   isBestSeller: boolean
   isNew: boolean
@@ -50,30 +50,30 @@ export const SAC_SERUMU: SalesProduct = {
       position: 0,
     },
   ],
- bundles: [
-  {
-    id: 'b1',
-    label: '1 Adet',
-    quantity: 1,
-    price: 349,
-    comparePrice: 499,   // ✅ EKLE
-    discountPercent: 0,
-    isMostPopular: false,
-  },
-  {
-    id: 'b2',
-    label: '3 Adet',
-    quantity: 3,
-    price: 799,
-    comparePrice: 1497,  // ✅ EKLE
-    discountPercent: 47,
-    isMostPopular: true,
-  },
-],
-  reviews: [   // ✅ EKLENDİ
-    { rating: 5 },
-    { rating: 5 },
-    { rating: 4 },
+  bundles: [
+    {
+      id: 'b1',
+      label: '1 Adet',
+      quantity: 1,
+      price: 349,
+      comparePrice: 499,
+      discountPercent: 0,
+      isMostPopular: false,
+    },
+    {
+      id: 'b2',
+      label: '3 Adet',
+      quantity: 3,
+      price: 799,
+      comparePrice: 1497,
+      discountPercent: 47,
+      isMostPopular: true,
+    },
+  ],
+  reviews: [   // 🔥 FIX
+    { id: 'r1', rating: 5 },
+    { id: 'r2', rating: 5 },
+    { id: 'r3', rating: 4 },
   ],
   stock: 50,
   isBestSeller: true,
