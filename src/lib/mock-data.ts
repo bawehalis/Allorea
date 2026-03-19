@@ -1,4 +1,4 @@
-// src/lib/mock-data.ts — FINAL FIX (ALL ERRORS RESOLVED)
+// src/lib/mock-data.ts — FINAL FIX (ALL ERRORS FULLY RESOLVED)
 
 // ─── TYPES ─────────────────────────
 
@@ -18,6 +18,14 @@ export interface ProductImage {
   position: number
 }
 
+// 🔥 FULL REVIEW TYPE
+export interface ProductReview {
+  id: string
+  rating: number
+  title: string
+  body: string
+}
+
 export interface SalesProduct {
   id: string
   name: string
@@ -27,7 +35,7 @@ export interface SalesProduct {
   comparePrice: number
   images: ProductImage[]
   bundles: ProductBundle[]
-  reviews: { id: string; rating: number }[]   // 🔥 FIX
+  reviews: ProductReview[]   // 🔥 FIX
   stock: number
   isBestSeller: boolean
   isNew: boolean
@@ -43,6 +51,7 @@ export const SAC_SERUMU: SalesProduct = {
   description: 'Saç dökülmesini azaltmaya yardımcı premium serum.',
   price: 349,
   comparePrice: 499,
+
   images: [
     {
       id: 'i1',
@@ -50,6 +59,7 @@ export const SAC_SERUMU: SalesProduct = {
       position: 0,
     },
   ],
+
   bundles: [
     {
       id: 'b1',
@@ -70,11 +80,29 @@ export const SAC_SERUMU: SalesProduct = {
       isMostPopular: true,
     },
   ],
-  reviews: [   // 🔥 FIX
-    { id: 'r1', rating: 5 },
-    { id: 'r2', rating: 5 },
-    { id: 'r3', rating: 4 },
+
+  // 🔥 FULL FIXED REVIEWS
+  reviews: [
+    {
+      id: 'r1',
+      rating: 5,
+      title: 'Gerçekten işe yarıyor',
+      body: '2 haftada saç dökülmem ciddi şekilde azaldı.',
+    },
+    {
+      id: 'r2',
+      rating: 5,
+      title: 'Kaliteli ürün',
+      body: 'Saçlarım daha dolgun ve canlı görünüyor.',
+    },
+    {
+      id: 'r3',
+      rating: 4,
+      title: 'Memnun kaldım',
+      body: 'Fiyat biraz yüksek ama performans iyi.',
+    },
   ],
+
   stock: 50,
   isBestSeller: true,
   isNew: false,
@@ -91,7 +119,7 @@ export function getProductBySlug(slug: string) {
   return ALL_PRODUCTS.find((p) => p.slug === slug)
 }
 
-// ─── BLOG FIX ─────────────────────────
+// ─── BLOG ─────────────────────────
 
 export interface BlogPost {
   id: string
