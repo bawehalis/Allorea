@@ -1,4 +1,6 @@
-// src/lib/mock-data.ts — FINAL (ABSOLUTE LAST FIX)
+// src/lib/mock-data.ts — ULTIMATE FINAL (NO MORE ERRORS)
+
+// ─── TYPES ─────────────────────────
 
 export interface ProductBundle {
   id: string
@@ -32,15 +34,25 @@ export interface SalesProduct {
   name: string
   slug: string
   description: string
+  tagline?: string
+  subtitle?: string
+
   price: number
   comparePrice: number
+
   images: ProductImage[]
   bundles: ProductBundle[]
   reviews: ProductReview[]
-  badge?: string   // 🔥 EKLENDİ
+
+  badge?: string
+  benefits?: string[]
+  ingredients?: string[]
+  faq?: { question: string; answer: string }[]
+
   stock: number
   isBestSeller: boolean
   isNew: boolean
+
   categorySlug: string
 }
 
@@ -50,11 +62,15 @@ export const SAC_SERUMU: SalesProduct = {
   id: 'sac-serumu-001',
   name: 'Allorea Saç Yoğunlaştırıcı Serum',
   slug: 'allorea-sac-yogunlastirici-serum',
+
   description: 'Saç dökülmesini azaltmaya yardımcı premium serum.',
+  tagline: 'Daha güçlü ve dolgun saçlar için özel formül',
+  subtitle: 'Profesyonel saç bakım çözümü',
+
   price: 349,
   comparePrice: 499,
 
-  badge: 'Premium', // 🔥 EKLE
+  badge: 'Premium',
 
   images: [
     {
@@ -114,6 +130,29 @@ export const SAC_SERUMU: SalesProduct = {
       name: 'Elif A.',
       date: '2025-02-15',
       isVerified: false,
+    },
+  ],
+
+  benefits: [
+    'Saç dökülmesini azaltır',
+    'Saç köklerini güçlendirir',
+    'Daha dolgun görünüm sağlar',
+  ],
+
+  ingredients: [
+    'Biotin',
+    'Keratin',
+    'Argan Yağı',
+  ],
+
+  faq: [
+    {
+      question: 'Ne kadar sürede etkisini gösterir?',
+      answer: 'Genellikle 2-4 hafta içinde etkiler görülür.',
+    },
+    {
+      question: 'Günde kaç kez kullanılmalı?',
+      answer: 'Günde 1 kez düzenli kullanım önerilir.',
     },
   ],
 
