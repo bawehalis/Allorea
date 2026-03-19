@@ -88,10 +88,10 @@ const SAC_SERUMU: SalesProduct = {
   categorySlug: 'hair-care',
 }
 
+// ─── EXPORTS ─────────────────────────────────────────
+
 export const ALL_PRODUCTS: SalesProduct[] = [SAC_SERUMU]
-
 export const FEATURED_PRODUCTS = ALL_PRODUCTS
-
 export const PRODUCTS = ALL_PRODUCTS
 
 // ─── BLOG ─────────────────────────────────────────────
@@ -106,7 +106,7 @@ export const CATEGORY_NAMES: Record<string, string> = {
   'serums': 'Serumlar',
 }
 
-// ─── 🔥 EKLENEN KISIM (SORUNU ÇÖZEN) ─────────────────
+// ─── 🔥 CATEGORY FIX (FINAL) ─────────────────────────
 
 export interface CategoryItem {
   id: string
@@ -115,7 +115,7 @@ export interface CategoryItem {
   image: string
 }
 
-export const CATEGORIES: CategoryItem[] = [
+const CATEGORY_LIST: CategoryItem[] = [
   {
     id: 'hair-care',
     name: 'Saç Bakımı',
@@ -135,3 +135,7 @@ export const CATEGORIES: CategoryItem[] = [
     image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be',
   },
 ]
+
+// 🔥 both export (garanti çözüm)
+export const CATEGORIES = CATEGORY_LIST
+export default CATEGORY_LIST
