@@ -1,4 +1,4 @@
-// src/lib/mock-data.ts — FINAL FIX
+// src/lib/mock-data.ts — FINAL FIX (ALL ERRORS RESOLVED)
 
 // ─── TYPES ─────────────────────────
 
@@ -78,17 +78,17 @@ export const ALL_PRODUCTS = [SAC_SERUMU]
 export const FEATURED_PRODUCTS = ALL_PRODUCTS
 export const PRODUCTS = ALL_PRODUCTS
 
-// 🔥 BU ÇOK ÖNEMLİ (hata fix)
 export function getProductBySlug(slug: string) {
   return ALL_PRODUCTS.find((p) => p.slug === slug)
 }
 
-// ─── BLOG FIX ─────────────────────────
+// ─── BLOG FIX (TÜM ALANLAR EKLENDİ) ─────────────────────────
 
 export interface BlogPost {
   id: string
   slug: string
   title: string
+  excerpt: string
   content: string
   image?: string
   tags?: string[]
@@ -100,9 +100,12 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     id: '1',
     slug: 'ornek-blog',
-    title: 'Örnek Blog',
-    content: 'İçerik',
-    image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908',
+    title: 'Allorea Blog Yazısı',
+    excerpt: 'Saç bakımında devrim niteliğinde çözümler.',
+    content:
+      'Bu bir örnek blog içeriğidir. Allorea ürünleriyle saç bakımınızı güçlendirin.',
+    image:
+      'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908',
     tags: ['Saç Bakımı', 'Serum'],
     authorName: 'Allorea Team',
     publishedAt: '2025-01-01',
@@ -123,22 +126,24 @@ const CATEGORY_LIST: CategoryItem[] = [
     id: 'hair-care',
     name: 'Saç Bakımı',
     slug: 'hair-care',
-    image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da',
+    image:
+      'https://images.unsplash.com/photo-1522338242992-e1a54906a8da',
   },
   {
     id: 'skincare',
     name: 'Cilt Bakımı',
     slug: 'skincare',
-    image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908',
+    image:
+      'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908',
   },
   {
     id: 'serums',
     name: 'Serumlar',
     slug: 'serums',
-    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be',
+    image:
+      'https://images.unsplash.com/photo-1620916566398-39f1143ab7be',
   },
 ]
 
-// 🔥 çift export (garanti)
 export const CATEGORIES = CATEGORY_LIST
 export default CATEGORY_LIST
