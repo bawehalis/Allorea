@@ -1,6 +1,4 @@
-// src/lib/mock-data.ts — FINAL ABSOLUTE FULL FIX
-
-// ─── TYPES ─────────────────────────
+// src/lib/mock-data.ts — FINAL (ABSOLUTE LAST FIX)
 
 export interface ProductBundle {
   id: string
@@ -39,6 +37,7 @@ export interface SalesProduct {
   images: ProductImage[]
   bundles: ProductBundle[]
   reviews: ProductReview[]
+  badge?: string   // 🔥 EKLENDİ
   stock: number
   isBestSeller: boolean
   isNew: boolean
@@ -54,6 +53,8 @@ export const SAC_SERUMU: SalesProduct = {
   description: 'Saç dökülmesini azaltmaya yardımcı premium serum.',
   price: 349,
   comparePrice: 499,
+
+  badge: 'Premium', // 🔥 EKLE
 
   images: [
     {
